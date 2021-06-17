@@ -1,5 +1,6 @@
 const restController = require('../controllers/restController')
 const adminController = require('../controllers/adminController')
+const userController = require('../controllers/userController.js')
 
 
 module.exports = (app) => {
@@ -15,5 +16,10 @@ module.exports = (app) => {
   })
 
   app.get('/admin/restaurants', adminController.getRestaurants)
+
+  app.get('/signup', userController.signUpPage)
+  app.post('/signup', userController.signUp)
+
+  app.get('/signin', userController.signInPage)
 
 }
