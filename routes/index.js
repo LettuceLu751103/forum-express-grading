@@ -3,7 +3,7 @@ const adminController = require('../controllers/adminController')
 const userController = require('../controllers/userController.js')
 
 
-module.exports = (app) => {
+module.exports = (app, passport) => {
 
   app.get('/', (req, res) => {
     res.redirect('/restaurants')
@@ -21,5 +21,8 @@ module.exports = (app) => {
   app.post('/signup', userController.signUp)
 
   app.get('/signin', userController.signInPage)
+  app.post('/signin', passport.authenticate('local', { failureRedirect: '/signin', failureFlash: true }), userController.signIn)
+
+  app.get('/logout', userController.logout)
 
 }
