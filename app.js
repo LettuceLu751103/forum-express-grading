@@ -11,7 +11,7 @@ const passport = require('./config/passport')
 const methodOverride = require('method-override')
 
 app.use(bodyParser.urlencoded({ extended: true }))
-
+app.use('/upload', express.static(__dirname + '/upload'))
 
 
 
