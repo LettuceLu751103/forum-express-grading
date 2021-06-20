@@ -47,7 +47,7 @@ module.exports = (app, passport) => {
 
   // 用戶列表頁
   app.get('/admin/users', authenticatedAdmin, adminController.getUsers)
-  app.put('/admin/users/:id', authenticatedAdmin, adminController.putUsers)
+  app.put('/admin/users/:id/toggleAdmin', authenticatedAdmin, adminController.putUsers)
 
 
   app.get('/signup', userController.signUpPage)
