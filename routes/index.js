@@ -1,6 +1,8 @@
 const restController = require('../controllers/restController')
 const adminController = require('../controllers/adminController')
 const userController = require('../controllers/userController.js')
+const categoryController = require('../controllers/categoryController')
+
 const multer = require('multer')
 const upload = multer({ dest: 'temp/' })
 const helpers = require('../_helpers')
@@ -55,6 +57,11 @@ module.exports = (app, passport) => {
 
   app.get('/signin', userController.signInPage)
   app.post('/signin', passport.authenticate('local', { failureRedirect: '/signin', failureFlash: true }), userController.signIn)
+
+
+  // 餐廳列表相關請求
+  app.get('/admin/categories', authenticatedAdmin, categoryController.getCategories)
+  app.post('/admin/categories', authenticatedAdmin, categoryController.postCategories)
 
   app.get('/logout', userController.logout)
 
