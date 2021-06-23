@@ -62,6 +62,12 @@ module.exports = (app, passport) => {
   // 餐廳列表相關請求
   app.get('/admin/categories', authenticatedAdmin, categoryController.getCategories)
   app.post('/admin/categories', authenticatedAdmin, categoryController.postCategories)
+  app.get('/admin/categories/:id', authenticatedAdmin, categoryController.getCategories)
+  app.put('/admin/categories/:id', authenticatedAdmin, categoryController.putCategory)
+
+
+
+
 
   app.get('/logout', userController.logout)
 
