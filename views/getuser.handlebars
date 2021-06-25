@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-4">
+    {{#if user.image}}
+    <img src="{{user.image}}" alt="" srcset="" class="img-thumbnail rounded mx-auto d-block">
+    {{else}}
+    <img
+      src="https://styles.redditmedia.com/t5_2x5jfj/styles/profileIcon_snoo29fe6849-d4b7-49d8-8038-c346073f09a8-headshot.png?width=256&height=256&crop=256:256,smart&s=391ddfdc11d8eaabe352320f8279ac19f8016b08"
+      alt="" srcset="" class="img-thumbnail rounded mx-auto d-block">
+
+    {{/if}}
+  </div>
+  <div class="col-md-8">
+    <div class=" font-weight-bold mt-3">姓名: {{ user.name }}</div>
+    <div class="font-weight-bold mt-3">帳號: {{ user.email }}</div>
+    <a class="btn btn-primary text-light mt-5" href="/users/{{user.id}}/edit">Edit</a>
+  </div>
+</div>

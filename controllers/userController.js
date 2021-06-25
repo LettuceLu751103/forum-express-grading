@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs')
 const db = require('../models')
 const User = db.User
-
+const fs = require('fs')
 
 const userController = {
   signUpPage: (req, res) => {
@@ -45,7 +45,53 @@ const userController = {
     req.flash('success_messages', '登出成功')
     req.logout()
     res.redirect('/signin')
-  }
+  },
+
+  getUser: (req, res) => {
+    User.findByPk(req.params.id).then(user => {
+      // console.log(user)
+      res.render('getuser', { user: user.toJSON() })
+    })
+  },
+
+  editUser: (req, res) => {
+    User.findByPk(req.params.id).then(user => {
+      res.render('editUser', { user: user.toJSON() })
+    })
+  },
+
+  putUser: (req, res) => {
+    const { file } = req // equal to const file = req.file
+    if (file) {
+      fs.readFile(file.path, (err, data) => {
+        if (err) console.log('Error: ', err)
+        fs.writeFile(`upload/${file.originalname}`, data, () => {
+          return User.findByPk(req.params.id)
+            .then((user) => {
+              user.update({
+                name: req.body.name,
+                image: file ? `/upload/${file.originalname}` : user.image
+              }).then((user) => {
+                req.flash('success_messages', 'user was successfully to update')
+                res.redirect(`/users/${req.params.id}`)
+              })
+            })
+        })
+      })
+    } else {
+      return User.findByPk(req.params.id)
+        .then((user) => {
+          user.update({
+            name: req.body.name,
+            image: user.image
+          }).then((user) => {
+            req.flash('success_messages', 'user was successfully to update')
+            res.redirect(`/users/${req.params.id}`)
+          })
+        })
+    }
+  },
+
 }
 
 
