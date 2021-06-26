@@ -95,6 +95,37 @@ const restController = {
           comments: comments
         })
       })
+  },
+
+  getDashboard: (req, res) => {
+    console.log(req.params.id)
+    const whereQuery = {}
+    if (req.params.id) {
+      whereQuery.RestaurantId = req.params.id
+    }
+    return Promise.all([
+      Restaurant.findByPk(req.params.id, {
+        include: [
+          Category,
+          { model: Comment, include: [User] }
+        ]
+      }),
+      Comment.findAll({
+        raw: true,
+        nest: true,
+        where: whereQuery,
+      })
+    ])
+      .then(([restaurant, comments]) => {
+        // console.log(restaurant.name)
+        // console.log(comments)
+        const commentsTimes = comments.length
+        return res.render('dashboard', {
+          restaurant: restaurant.toJSON(),
+          commentsTimes: commentsTimes,
+          comments: comments
+        })
+      })
   }
 }
 
