@@ -73,6 +73,8 @@ module.exports = (app, passport) => {
   app.post('/comments', authenticated, commentController.postComment)
   app.delete('/comments/:id', authenticatedAdmin, commentController.deleteComment)
   app.get('/restaurants/:id/dashboard', authenticated, restController.getDashboard)
+  app.post('/favorite/:restaurantId', authenticated, userController.addFavorite)
+  app.delete('/favorite/:restaurantId', authenticated, userController.removeFavorite)
 
   // 餐廳前台會員資料請求
   app.get('/users/:id', authenticated, userController.getUser)
