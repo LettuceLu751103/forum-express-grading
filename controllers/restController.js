@@ -65,11 +65,22 @@ const restController = {
         Category,
         { model: Comment, include: [User] }
       ]
-    }).then(restaurant => {
-      return res.render('restaurant', {
-        restaurant: restaurant.toJSON(),
-      })
     })
+      .then(restaurant => {
+        console.log(restaurant)
+        restaurant.update({
+          name: restaurant.name,
+          tel: restaurant.tel,
+          address: restaurant.address,
+          opening_hours: restaurant.opening_hours,
+          description: restaurant.description,
+          image: restaurant.image,
+          viewcount: String(Number(restaurant.viewcount) + 1)
+        })
+        return res.render('restaurant', {
+          restaurant: restaurant.toJSON(),
+        })
+      })
   },
 
   getFeeds: (req, res) => {
