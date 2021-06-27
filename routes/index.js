@@ -69,6 +69,7 @@ module.exports = (app, passport) => {
   // 餐廳前台相關請求
   app.get('/restaurants', authenticated, restController.getRestaurants)
   app.get('/restaurants/feeds', authenticated, restController.getFeeds)
+  app.get('/restaurants/top', authenticated, restController.getTop)
   app.get('/restaurants/:id', authenticated, restController.getRestaurant)
   app.post('/comments', authenticated, commentController.postComment)
   app.delete('/comments/:id', authenticatedAdmin, commentController.deleteComment)
@@ -77,6 +78,7 @@ module.exports = (app, passport) => {
   app.delete('/favorite/:restaurantId', authenticated, userController.removeFavorite)
   app.post('/like/:restaurantId', authenticated, userController.addLike)
   app.delete('/like/:restaurantId', authenticated, userController.removeLike)
+
 
   // 餐廳前台會員資料請求
   app.get('/users/top', authenticated, userController.getTopUser)
