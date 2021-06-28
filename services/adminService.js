@@ -14,7 +14,7 @@ const adminService = {
       include: [Category]
     })
       .then(restaurants => {
-        // console.log(restaurants)
+        console.log(restaurants)
         callback({ restaurants: restaurants })
       })
   },
