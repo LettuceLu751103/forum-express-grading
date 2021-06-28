@@ -150,8 +150,7 @@ const restController = {
   getTop: (req, res) => {
 
     return Restaurant.findAll({
-      raw: true,
-      nest: true,
+
       include: [
         { model: User, as: 'FavoritedUsers' }
 
