@@ -13,6 +13,7 @@ const session = require('express-session')
 const passport = require('./config/passport')
 const methodOverride = require('method-override')
 
+
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/upload', express.static(__dirname + '/upload'))
 
@@ -44,6 +45,6 @@ app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
 
-require('./routes')(app, passport)
+require('./routes')(app)
 
 module.exports = app
