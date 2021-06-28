@@ -165,6 +165,7 @@ const restController = {
         }))
         console.log(restaurants)
         restaurants = restaurants.sort((a, b) => b.FavoritedCount - a.FavoritedCount)
+        restaurants = restaurants.slice(0, 10)
         // console.log(restaurants)
         res.render('top', { restaurants: restaurants })
       })
