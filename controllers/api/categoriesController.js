@@ -13,12 +13,17 @@ const categoriesController = {
       return res.json(data)
     })
   },
-  putCategories: (req, res, callback) => {
+  putCategories: (req, res) => {
     categoriesService.postCategories(req, res, (data) => {
       // console.log(data)
       return res.json(data)
     })
   },
+  deleteCategories: (req, res) => {
+    categoriesService.deleteCategory(req, res, (data) => {
+      return res.json(data)
+    })
+  }
 }
 
 module.exports = categoriesController
