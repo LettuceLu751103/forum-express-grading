@@ -6,7 +6,7 @@ let categoriesService = {
     return Category.findAll({ raw: true, nest: true }).then(categories => {
       // console.log(categories)
       if (req.params.id) {
-        Category.findByPk(req.params.id)
+        Category.findByPk(req.params.id, { raw: true, nest: true })
           .then((category) => {
             // console.log(categories)
             console.log(category)
