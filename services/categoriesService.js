@@ -30,6 +30,19 @@ let categoriesService = {
         })
     }
   },
+  putCategories: (req, res, callback) => {
+    if (!req.body.name) {
+      callback({ status: 'success', message: "name didn't exist" })
+    } else {
+      return Category.findByPk(req.params.id)
+        .then((category) => {
+          category.update(req.body)
+            .then((category) => {
+              callback({ status: 'success', message: 'restaurant was successfully created' })
+            })
+        })
+    }
+  },
 
 }
 module.exports = categoriesService
