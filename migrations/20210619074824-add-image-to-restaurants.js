@@ -8,5 +8,6 @@ module.exports = {
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.removeColumn('Restaurants', 'image');
+    // console.log('20210619074824-add-image-to-restaurants')
   }
 };

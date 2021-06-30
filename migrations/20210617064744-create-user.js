@@ -29,5 +29,6 @@ module.exports = {
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('Users');
+    // console.log('20210617064744-create-user')
   }
 };

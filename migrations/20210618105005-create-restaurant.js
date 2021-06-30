@@ -35,5 +35,6 @@ module.exports = {
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('Restaurants');
+    // console.log('20210618105005-create-restaurant')
   }
 };
